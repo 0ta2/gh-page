@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>esa.io で静的サイトを公開してみたときの手順公開！手を動かしながらやれば､同じよにできるよ！ – 日々のメモ書き</title>
+<meta name="description" content="概要 esa.io を使って､静的サイトジェネレータである､Hugoを使って公開してみたので､手順にまとめてみました 😄 Hugo のインストール自体は､公式に書いてあった､Quick Startを見ながらやれば大丈夫！ 全体の流  Hugo のインストール 記事作成用のリポジトリ作成 記事公開用のリポジトリ作成 CircleCIと記事作 …">
+<meta name="created" content="0001-01-01T00:00:00&#43;0000">
+<meta name="modified" content="0001-01-01T00:00:00&#43;0000">
+
+
+<meta property="og:site_name" content="日々のメモ書き">
+<meta property="og:title" content="esa.io で静的サイトを公開してみたときの手順公開！手を動かしながらやれば､同じよにできるよ！">
+<meta property="og:url" content="https://0ta2.github.io/gh-page/posts/9.html/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.58.3" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://0ta2.github.io/gh-page/posts/9.html/">
+<link rel="apple-touch-icon" href="https://0ta2.github.io/gh-page/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://0ta2.github.io/gh-page/css/styles.6d7608383434fcb81afd5333146a2e6d4e19896bf3305f7969b2ed6780df37fa.css">
+<link rel="stylesheet" href="https://0ta2.github.io/gh-page/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "esa.io で静的サイトを公開してみたときの手順公開！手を動かしながらやれば､同じよにできるよ！",
+    "datePublished": "0001-01-01T00:00:00Z",
+    "dateModified": "0001-01-01T00:00:00Z",
+    "url" : "https://0ta2.github.io/gh-page/posts/9.html/",
+    "description": "概要 esa.io を使って､静的サイトジェネレータである､Hugoを使って公開してみたので､手順にまとめてみました 😄 Hugo のインストール自体は､公式に書いてあった､Quick Startを見ながらやれば大丈夫！ 全体の流  Hugo のインストール 記事作成用のリポジトリ作成 記事公開用のリポジトリ作成 CircleCIと記事作 …",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://0ta2.github.io/gh-page/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "日々のメモ書き",
+      "url": "https://0ta2.github.io/gh-page/"
+    }
+  }
+</script>
+
+<script defer src="https://0ta2.github.io/gh-page/js/umbrella.min.b426107371d121c9a56a27aac9e9058ff592a021e2f4c3c94827fe70920d3cbb.js"></script>
+<script defer src="https://0ta2.github.io/gh-page/js/script.min.8e4d91ebe0d9226621e408b7205bd7b009e4935608e4b29c4275116490cc836d.js"></script>
+
+
+</head>
+
+<body>
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="https://0ta2.github.io/gh-page/" title="Home" rel="home" class="header__logo"><img src="https://0ta2.github.io/gh-page/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="https://0ta2.github.io/gh-page/" title="Home" class="header__site-link" rel="home"><span>日々のメモ書き</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a class="" href="https://0ta2.github.io/gh-page/">Home</a></li>
+<li><a class="active" href="https://0ta2.github.io/gh-page/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">esa.io で静的サイトを公開してみたときの手順公開！手を動かしながらやれば､同じよにできるよ！</h1>
+</header>
+<div class="content">
+
+
+<h1 id="概要">概要</h1>
+
+<p>esa.io を使って､静的サイトジェネレータである､Hugoを使って公開してみたので､手順にまとめてみました 😄
+Hugo のインストール自体は､公式に書いてあった､<a href="https://gohugo.io/getting-started/quick-start/">Quick Start</a>を見ながらやれば大丈夫！</p>
+
+<h2 id="全体の流">全体の流</h2>
+
+<ol>
+<li>Hugo のインストール</li>
+<li>記事作成用のリポジトリ作成</li>
+<li>記事公開用のリポジトリ作成</li>
+<li>CircleCIと記事作成用リポジトリとの連携</li>
+<li>GitHub Page の設定</li>
+<li>esa.io との連携</li>
+<li></li>
+</ol>
+
+<h2 id="用意するもの">用意するもの</h2>
+
+<ul>
+<li>brew がインストールされてるMac</li>
+<li>GitHubのアカウント
+
+<ul>
+<li>記事作成用のリポジトリ</li>
+<li>GitHub Page用のリポジトリ</li>
+</ul></li>
+<li>CircleCIのアカウント</li>
+</ul>
+
+<h3 id="hugo-のインストール">Hugo のインストール</h3>
+
+<p><code>brew</code> を使えばあっという間にインストールできます｡</p>
+
+<pre><code class="language-zsh">❯ brew install hugo
+</code></pre>
+
+<p>とりあえず､バージョンを確認してみる</p>
+
+<pre><code class="language-zsh">❯ hugo version
+Hugo Static Site Generator v0.58.3/extended darwin/amd64 BuildDate: unknown
+</code></pre>
+
+<p>新規サイトの作成
+<code>esa-0ta2-blog</code> が作りたいサイト名になるので適宜変えてもらえればOKです｡</p>
+
+<pre><code class="language-zsh">❯ hugo new site esa-0ta2-blog
+Congratulations! Your new Hugo site is created in /Users/0ta2/.ghq/github.com/0ta2/esa-0ta2-blog.
+
+Just a few more steps and you're ready to go:
+
+1. Download a theme into the same-named folder.
+   Choose a theme from https://themes.gohugo.io/ or
+   create your own with the &quot;hugo new theme &lt;THEMENAME&gt;&quot; command.
+2. Perhaps you want to add some content. You can add single files
+   with &quot;hugo new &lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;&quot;.
+3. Start the built-in live server via &quot;hugo server&quot;.
+
+Visit https://gohugo.io/ for quickstart guide and full documentation.
+</code></pre>
+
+<h4 id="記事作成用のリポジトリ作成">記事作成用のリポジトリ作成</h4>
+
+<p>GitHub に記事公開用のプライベートリポジトリを作成しておいてください｡</p>
+
+<h4 id="記事作成用リポジトリにcommit-push">記事作成用リポジトリにCommit &amp; Push</h4>
+
+<p>配下に作成したサイト名でフォルダができるので､移動して
+<code>git init</code> を実行すればOK!</p>
+
+<pre><code class="language-zsh">❯ cd esa-0ta2-blog/
+
+❯ pwd
+/Users/0ta2/.ghq/github.com/0ta2/esa-0ta2-blog
+
+❯ git init
+</code></pre>
+
+<h4 id="テーマの適用">テーマの適用</h4>
+
+<p>テーマは､下記から探すことができます｡</p>
+
+<p><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></p>
+
+<p>今回は､ <code>zen</code> というシンプルなやつにしました!</p>
+
+<pre><code class="language-zsh">❯ git submodule add https://github.com/frjo/hugo-theme-zen.git themes/zen
+</code></pre>
+
+<p><code>config.toml</code> に <code>zen</code> を設定すれば､テーマの指定ができます｡</p>
+
+<pre><code class="language-zsh">❯ echo 'theme = &quot;zen&quot;' &gt;&gt; config.toml
+</code></pre>
+
+<h4 id="試しに記事を作成してみる">試しに記事を作成してみる</h4>
+
+<pre><code class="language-zsh">❯ hugo new posts/my-first-post.md
+/Users/0ta2/.ghq/github.com/0ta2/esa-0ta2-blog/content/posts/my-first-post.md created
+</code></pre>
+
+<pre><code class="language-zsh">❯ cat content/posts/my-first-post.md
+---
+title: &quot;My First Post&quot;
+date: 2019-10-05T12:07:42+09:00
+draft: true
+---
+</code></pre>
+
+<h4 id="ローカルで-hugo-を起動">ローカルで hugo を起動</h4>
+
+<p>サイトへのアクセスが､下記のURLと表示されてるので､アクセスすればシンプルな､ <code>zen</code> のテーマのサイトが見れるはずです｡</p>
+
+<p><a href="http://localhost:1313/">http://localhost:1313/</a></p>
+
+<pre><code>❯ hugo server -D
+Building sites … WARN 2019/10/01 00:09:49 .File.UniqueID on zero object. Wrap it in if or with: {{ with .File }}{{ .UniqueID }}{{ end }}
+
+                   | EN
++------------------+----+
+  Pages            |  6
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  7
+  Processed images |  0
+  Aliases          |  2
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 203 ms
+Watching for changes in /Users/0ta2/.ghq/github.com/0ta2/esa-0ta2-blog/{archetypes,content,data,layouts,static,themes}
+Watching for config changes in /Users/0ta2/.ghq/github.com/0ta2/esa-0ta2-blog/config.toml
+Environment: &quot;development&quot;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+</code></pre>
+
+<p>__終了したいときは､<code>Ctrl + c</code> で終了できます｡</p>
+
+<h4 id="カスタマイズ">カスタマイズ</h4>
+
+<p>下記の項目を修正すれば､タイトル等を変更することができます｡
+<strong>canonifyURLs</strong> を有効にしないと､GitHub Page で表示できないので､必ず <code>true</code> にしましょう！</p>
+
+<pre><code class="language-zsh">❯ cat config.toml
+baseURL = &quot;https://0ta2.github.io/gh-page/&quot;
+languageCode = &quot;ja-jp&quot;
+canonifyURLs = true # 相対パスじゃなくて､baseURLを起点にする｡
+enableEmoji = true  # 絵文字サポートを有効にする
+title = &quot;日々のメモ書き&quot;
+theme = &quot;zen&quot;
+</code></pre>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/f6b03d23-028c-4a37-a13e-27bc49687912.png" alt="スクリーンショット 2019-10-05 12.10.25.png (36.7 kB)" /></p>
+
+<h4 id="静的サイトを生成">静的サイトを生成</h4>
+
+<p>静的サイトを生成するには､ただ単純に <code>hugo</code> とするだけで生成される｡</p>
+
+<pre><code class="language-zsh">❯ hugo
+Building sites … WARN 2019/10/05 12:11:42 .File.UniqueID on zero object. Wrap it in if or with: {{ with .File }}{{ .UniqueID }}{{ end }}
+
+                   | EN
++------------------+----+
+  Pages            |  6
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  7
+  Processed images |  0
+  Aliases          |  2
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 403 ms
+</code></pre>
+
+<h3 id="記事作成用のリポジトリ作成-1">記事作成用のリポジトリ作成</h3>
+
+<p>一旦､今までの状況をpushしておく</p>
+
+<p><code>.gitignore</code> で不要なものを除外するようにする｡</p>
+
+<pre><code class="language-zsh">❯ cat .gitignore
+# Hugo
+/public
+
+# Mac
+.DS_Store
+❯ git add .gitignore
+</code></pre>
+
+<p><code>git status</code> でみると除外されてる｡</p>
+
+<pre><code class="language-zsh">❯ git status
+❯ git add .
+❯ git cm -m &quot;first commit&quot;
+❯ git remote add origin git@github.com:0ta2/esa-0ta2-blog.git
+❯ git push -u origin master
+</code></pre>
+
+<h3 id="記事公開用のリポジトリ作成">記事公開用のリポジトリ作成</h3>
+
+<p>公開用のリポジトリを作成しておきます｡
+公開用になるので､パブリックリポジトリにしておきましょう！</p>
+
+<h3 id="circleciと記事作成用リポジトリとの連携">CircleCIと記事作成用リポジトリとの連携</h3>
+
+<p>CircleCI にログインして､<code>ADD PROJECTS</code> から公開用になるページのリポジトリを､<code>Set Up Project</code>の設定をしていきます！</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.16.34.png (245.1 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/9a546255-e90d-4e32-bd23-7d2b4bb64bfb.png"></p>
+
+<p>とりあえず､<code>Linux</code> であればOK！</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.20.20.png (249.7 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/caf7b614-6670-40d9-a611-fb67c6d32ca8.png"></p>
+
+<p>下の方に､サンプルの yml があるので､一旦そちらを使ってみる！</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.22.39.png (240.2 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/5269c2bd-ab5b-4c27-9e7a-5c6f48c1876e.png"></p>
+
+<pre><code class="language-zsh">❯ vim .circleci/config.yml
+❯ git add .circleci/
+❯ git commit -m &quot;Add Circleci yml&quot;
+❯ git push origin master
+</code></pre>
+
+<p>Push ができたら､画像にある <code>Start building</code> でbuild開始と思ったら､
+すでにPushを検知して､buildが走ってる 😅</p>
+
+<p>ここから､少しややこしいけど､ ssh 鍵の設定をやっていく｡
+CircelCI自体はデプロイの権限しかないから､ssh鍵登録して､Pushできるようにしてあげる設定をする｡</p>
+
+<p><code>SETTINGS</code> の歯車マークから設定画面を開く</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.29.21.png (224.1 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/de0797e7-eb7c-46e9-b94a-1dec377bf12a.png"></p>
+
+<p><code>SSH Permissions</code> から鍵登録する｡</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.32.15.png (248.4 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/0f89f4bc-4592-4a05-9074-15f12f0024e6.png"></p>
+
+<p><code>Hostname</code> と <code>Private Key</code> を登録します｡
+<code>Hostname</code> のは､鍵に関連付けるホスト名を入力する必要があるそうです｡
+なので､今回は <code>github.com</code> にしています｡
+<code>Private Key</code> は､GitHubに登録している､鍵を使います｡
+ただ､OpenSSHのデフォルトフォーマットはサポートしていないとのこと 😱</p>
+
+<p>なので､適宜 pem に変換してね！</p>
+
+<p>登録できたら､<code>Fingerprint</code>を確認できるので､メモっておきます｡</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-06 0.01.45.png (258.3 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/06/14273/a4945aec-b347-4c53-8fd1-4aea20ae5f99.png"></p>
+
+<p>Pem に変換したら登録すれば､CircelCIでやっとPushできるようになります｡</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-05 23.39.14.png (269.3 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/26e3176f-b0dd-4505-b747-cc1675e6fb6f.png"></p>
+
+<p>メモった､<code>Fingerprint</code>を下記のconfに記載したら､<code>git push</code>しちゃいましょう！</p>
+
+<pre><code class="language-zsh">❯ mkdir .circleci
+❯ touch .circleci/config.yml
+</code></pre>
+
+<p><details><summary>config.yml</summary></p>
+
+<pre><code class="language-.circleci/config.yml">---
+version: 2
+
+defaults: &amp;defaults
+  working_directory: ~/repo
+  docker:
+    - image: cibuilds/hugo:0.58
+      environment:
+        TZ: &quot;Asia/Tokyo&quot;
+
+jobs:
+  build:
+    &lt;&lt;: *defaults
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init --recursive
+
+      - add_ssh_keys:
+          fingerprints:
+            - &quot;64:73:27:82:6b:dc:99:e1:a8:bc:e4:67:8e:a3:20:f8&quot;
+
+      - run:
+          name: Git Add config
+          command: |
+            git config --global user.name &quot;CircleCI&quot;
+            git config --global user.email &quot;circleci@example.com&quot;
+
+      - run:
+          name: Git Commit &amp; Push
+          command: |
+            git clone git@github.com:0ta2/gh-page.git public
+            hugo
+            cd public
+            git add .
+            git commit -m &quot;[ci skip] publish&quot;
+            git push origin master
+</code></pre>
+
+<p></details></p>
+
+<pre><code class="language-zsh">❯ git add .circleci/config.yml
+❯ git commit -m &quot;Modify CircleCI yml&quot;
+</code></pre>
+
+<h3 id="github-page-の設定">GitHub Page の設定</h3>
+
+<p><code>記事公開用</code> のリポジトリで設定していきます｡</p>
+
+<p><code>Settings</code> を選択して､下の方に設定項目があるので､移動します｡
+<img width="1279" alt="スクリーンショット 2019-10-06 11.19.34.png (288.3 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/06/14273/3b8cb7b1-7ca6-41c4-9b35-c2ff89eedab0.png"></p>
+
+<p><code>GitHug Page</code> の設定項目があるので､ <code>None</code> を <code>master branch</code>  に変更します｡</p>
+
+<p><img width="1279" alt="スクリーンショット 2019-10-06 11.19.46.png (292.3 kB)" src="https://img.esa.io/uploads/production/attachments/13530/2019/10/06/14273/940561b1-004c-4df1-bf0d-78699ad74d6b.png"></p>
+
+<p>これで､記事作成用のGitHubと記事公開用の連携ができたので､今度は<code>esa.io</code>と連携していきましょう！</p>
+
+<p><code>SETTINGS</code> から設定する｡</p>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/7f548bdc-ed7d-4e09-8dcd-42017ff2d3f4.png" alt="スクリーンショット 2019-10-05 12.14.22.png (123.3 kB)" /></p>
+
+<p><code>Webhook・アプリ連携</code> から<code>GitHub</code> との連携設定をしていきます｡
+<code>Webhook・アプリ連携</code> を選択すると､<code>Add webhooks</code>のボタンが出てくるので､それを選択して進めていきます｡</p>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/fea1c2aa-9765-49c6-bdb4-7f56722851c3.png" alt="スクリーンショット 2019-10-05 12.27.06.png (70.5 kB)" /></p>
+
+<p>いろんなものと連携できるようになっています｡
+今回は､<code>GitHub(β)</code> で連携します｡
+まだ､β版なので本リリースが待ち遠しいっす!</p>
+
+<p>参考: <a href="https://docs.esa.io/posts/176">GitHub Webhook (β) で GitHubのリポジトリに md ファイルを push できるようになりました</a></p>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/f3eb51d3-5701-4523-8b6e-1f6a7d92759f.png" alt="スクリーンショット 2019-10-05 12.18.42.png (68.0 kB)" /></p>
+
+<p><code>GitHub(β)</code> には､下記のように入力します｡</p>
+
+<table>
+<thead>
+<tr>
+<th>ラベル名</th>
+<th>入力値</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Label (Optional)</td>
+<td>任意の名前</td>
+</tr>
+
+<tr>
+<td>esa root category</td>
+<td>esaのカテゴリ名</td>
+</tr>
+
+<tr>
+<td>repo</td>
+<td>GitHubのリポジトリ名</td>
+</tr>
+
+<tr>
+<td>branch</td>
+<td>ブランチ名</td>
+</tr>
+
+<tr>
+<td>output directory</td>
+<td>mdファイルのディレクトリを指定</td>
+</tr>
+
+<tr>
+<td>API Access Token</td>
+<td>GitHubから取得したAPI Token</td>
+</tr>
+</tbody>
+</table>
+
+<p>GitHub API は､<a href="https://github.com/settings/tokens">ここ</a>から取得できるよ</p>
+
+<p>実際に入力するとこんな感じ</p>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/e5a5659f-5f6d-4acc-b629-8fb14ce1163f.png" alt="スクリーンショット 2019-10-05 12.23.22.png (41.4 kB)" /></p>
+
+<p>これで､<code>Ship It!</code> での更新のタイミングでmdファイルが､GitHubにpushされるようになります!</p>
+
+<p>動くかどうか､試してみましょう!</p>
+
+<p>確かに新しく記事が追加されてのが確認できました!</p>
+
+<pre><code class="language-zsh">❯ git pull origin master
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+Unpacking objects: 100% (5/5), done.
+remote: Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+From github.com:0ta2/esa-0ta2-blog
+ * branch            master     -&gt; FETCH_HEAD
+   c2640e4..ffaba87  master     -&gt; origin/master
+Updating c2640e4..ffaba87
+Fast-forward
+ content/posts/12.html.md | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 content/posts/12.html.md
+</code></pre>
+
+<p>中身はこんな感じです</p>
+
+<pre><code class="language-zsh">❯ cat content/posts/12.html.md
+---
+title: &quot;testだよ!&quot;
+category:
+tags:
+created_at: 2019-10-05 13:02:38 +0900
+updated_at: 2019-10-05 13:02:38 +0900
+published: true
+number: 12
+---
+
+これはテストです!
+</code></pre>
+
+<p>試しにローカルサーバで動かしてみると､､､</p>
+
+<pre><code class="language-zsh">❯ hugo server -D
+</code></pre>
+
+<p>できてる 😀</p>
+
+<p><img src="https://img.esa.io/uploads/production/attachments/13530/2019/10/05/14273/904e1e74-1bdb-4e83-979b-b184695f6f5f.png" alt="スクリーンショット 2019-10-05 13.05.28.png (41.5 kB)" /></p>
+
+
+</div>
+</article>
+</main>
+
+
+<aside class="sidebar layout__second-sidebar">
+<section>
+<h4 class="menu"><a class="active" href="https://0ta2.github.io/gh-page/posts/">Posts</a></h4>
+<ul class="menu">
+<li><a class="active" href="https://0ta2.github.io/gh-page/posts/9.html/">esa.io で静的サイトを公開してみたときの手順公開！手を動かしながらやれば､同じよにできるよ！</a></li>
+</ul>
+</section>
+</aside>
+<footer class="footer layout__footer">
+<p><span>© 日々のメモ書き</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>
